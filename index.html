@@ -660,7 +660,7 @@
       <li><a href="#bench">Benchmarks</a></li>
       <li><a href="#start">Get Started</a></li>
       <li><a href="https://github.com/c0data/c0-spec">Reference</a></li>
-      <li><a href="https://github.com/c0data">API</a></li>
+      <li><a href="#implementations">API</a></li>
       <li><a href="https://github.com/c0data">GitHub</a></li>
     </ul>
   </div>
@@ -945,7 +945,19 @@
 <section id="start">
   <div class="container">
     <h2>Get <span>Started</span></h2>
-    <p class="section-sub">Add C0DATA to your Crystal project, or use the c0fmt command-line tool.</p>
+    <p class="section-sub">Seven implementations, one spec, one shared conformance suite. The Crystal reference is shown below; every port has the same builder and zero-copy reader.</p>
+
+    <div class="install-block" id="implementations">
+      <h4>Implementations &amp; API docs</h4>
+<pre><span class="kw">Crystal</span>  reference     <a href="https://github.com/c0data/c0-cr">c0data/c0-cr</a>   <a href="https://c0data.github.io/c0-cr/">API docs</a>
+<span class="kw">TypeScript</span>             <a href="https://github.com/c0data/c0-js">c0data/c0-js</a>   <a href="https://c0data.github.io/c0-js/">API docs</a>
+<span class="kw">Rust</span>     zero-dep      <a href="https://github.com/c0data/c0-rs">c0data/c0-rs</a>   <span class="dim">cargo doc</span>
+<span class="kw">Go</span>       pure Go       <a href="https://github.com/c0data/c0-go">c0data/c0-go</a>   <a href="https://pkg.go.dev/github.com/c0data/c0-go">pkg.go.dev</a>
+<span class="kw">C</span>        single header <a href="https://github.com/c0data/c0-c">c0data/c0-c</a>    <a href="https://c0data.github.io/c0-c/">API docs</a>
+<span class="kw">Python</span>   C extension   <a href="https://github.com/c0data/c0-py">c0data/c0-py</a>   <a href="https://c0data.github.io/c0-py/">API docs</a>
+<span class="kw">Ruby</span>     C extension   <a href="https://github.com/c0data/c0-rb">c0data/c0-rb</a>   <a href="https://c0data.github.io/c0-rb/">API docs</a>
+<span class="kw">Editors</span>  VS Code       <a href="https://github.com/c0data/c0-ed">c0data/c0-ed</a></pre>
+    </div>
 
     <div class="install-block">
       <h4>As a library</h4>
@@ -993,7 +1005,7 @@ c0fmt import yaml settings.yml | c0fmt compact -o data.c0</pre>
       <a href="https://github.com/c0data">GitHub</a>
       <a href="https://github.com/c0data/c0-spec">Spec</a>
       <a href="https://github.com/c0data/c0-spec">Reference</a>
-      <a href="https://github.com/c0data">API</a>
+      <a href="#implementations">API</a>
       <a href="https://github.com/c0data">MIT License</a>
     </div>
     <p>C0DATA &mdash; the invisible made visible.</p>
