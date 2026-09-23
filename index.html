@@ -956,7 +956,8 @@
 <span class="kw">C</span>        single header <a href="https://github.com/c0data/c0-c">c0data/c0-c</a>    <a href="https://c0data.github.io/c0-c/">API docs</a>
 <span class="kw">Python</span>   C extension   <a href="https://github.com/c0data/c0-py">c0data/c0-py</a>   <a href="https://c0data.github.io/c0-py/">API docs</a>
 <span class="kw">Ruby</span>     C extension   <a href="https://github.com/c0data/c0-rb">c0data/c0-rb</a>   <a href="https://c0data.github.io/c0-rb/">API docs</a>
-<span class="kw">Editors</span>  VS Code       <a href="https://github.com/c0data/c0-ed">c0data/c0-ed</a></pre>
+<span class="kw">Editors</span>  VS Code       <a href="https://github.com/c0data/c0-ed">c0data/c0-ed</a>
+<span class="kw">CLI</span>      c0fmt         <a href="https://github.com/c0data/c0-fmt">c0data/c0-fmt</a></pre>
     </div>
 
     <div class="install-block">
@@ -993,7 +994,9 @@ c0fmt import yaml settings.yml | c0fmt compact -o data.c0</pre>
 
     <div class="install-block">
       <h4>Build c0fmt</h4>
-<pre>crystal build src/c0fmt.cr -o bin/c0fmt --release</pre>
+<pre><span class="dim"># c0fmt lives in its own repo: </span><a href="https://github.com/c0data/c0-fmt">c0data/c0-fmt</a>
+git clone https://github.com/c0data/c0-fmt &amp;&amp; cd c0-fmt
+shards build --release   <span class="dim"># → bin/c0fmt</span></pre>
     </div>
   </div>
 </section>
