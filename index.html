@@ -694,20 +694,20 @@
 }</pre>
       </div>
       <div class="compare-panel c0">
-        <div class="panel-header">C0DATA <span class="size">100 bytes</span></div>
+        <div class="panel-header">C0DATA <span class="size">91 bytes</span></div>
 <pre><span class="glyph">␜</span>mydb
   <span class="glyph">␝</span>users
-    <span class="glyph">␁</span>name<span class="glyph">␟</span>amount
+    <span class="glyph">␁␞</span>name<span class="glyph">␟</span>amount
     <span class="glyph">␞</span>Alice<span class="glyph">␟</span>1502.30
     <span class="glyph">␞</span>Bob<span class="glyph">␟</span>340.00
   <span class="glyph">␝</span>products
-    <span class="glyph">␁</span>id<span class="glyph">␟</span>product
+    <span class="glyph">␁␞</span>id<span class="glyph">␟</span>product
     <span class="glyph">␞</span>01<span class="glyph">␟</span>Widget
     <span class="glyph">␞</span>02<span class="glyph">␟</span>Gadget
 <span class="glyph">␄</span></pre>
       </div>
     </div>
-    <p class="dim" style="font-size: 0.8rem;">Each glyph is a single-byte control code. No braces, no quotes, no escaping.</p>
+    <p class="dim" style="font-size: 0.8rem;">Each glyph is a single-byte control code. No braces, no quotes; a value that needs them is fenced by two bytes, ␂…␃.</p>
   </div>
 </header>
 
@@ -743,24 +743,29 @@
 <section id="how">
   <div class="container">
     <h2>How It <span>Works</span></h2>
-    <p class="section-sub">ASCII has 32 control codes (0x00&ndash;0x1F) designed for structuring data. C0DATA assigns meaning to 11 of them.</p>
+    <p class="section-sub">ASCII has 32 control codes (0x00&ndash;0x1F) designed for structuring data. C0DATA assigns meaning to 16 of them.</p>
 
     <table class="code-table">
       <thead>
         <tr><th>Glyph</th><th>Byte</th><th>Abbr</th><th>Role</th></tr>
       </thead>
       <tbody>
-        <tr><td class="glyph-cell">␜</td><td class="byte">0x1C</td><td class="abbr">FS</td><td>File / Database separator</td></tr>
-        <tr><td class="glyph-cell">␝</td><td class="byte">0x1D</td><td class="abbr">GS</td><td>Group / Table / Section separator</td></tr>
-        <tr><td class="glyph-cell">␞</td><td class="byte">0x1E</td><td class="abbr">RS</td><td>Record / Row separator</td></tr>
-        <tr><td class="glyph-cell">␟</td><td class="byte">0x1F</td><td class="abbr">US</td><td>Unit / Field separator</td></tr>
-        <tr><td class="glyph-cell">␁</td><td class="byte">0x01</td><td class="abbr">SOH</td><td>Header (field names)</td></tr>
-        <tr><td class="glyph-cell">␄</td><td class="byte">0x04</td><td class="abbr">EOT</td><td>End of document</td></tr>
-        <tr><td class="glyph-cell">␂</td><td class="byte">0x02</td><td class="abbr">STX</td><td>Open nested sub-structure</td></tr>
-        <tr><td class="glyph-cell">␃</td><td class="byte">0x03</td><td class="abbr">ETX</td><td>Close nested sub-structure</td></tr>
+        <tr><td class="glyph-cell">␜</td><td class="byte">0x1C</td><td class="abbr">FS</td><td>File separator</td></tr>
+        <tr><td class="glyph-cell">␝</td><td class="byte">0x1D</td><td class="abbr">GS</td><td>Group / table / section separator; repeated for depth</td></tr>
+        <tr><td class="glyph-cell">␞</td><td class="byte">0x1E</td><td class="abbr">RS</td><td>Record / row separator</td></tr>
+        <tr><td class="glyph-cell">␟</td><td class="byte">0x1F</td><td class="abbr">US</td><td>Unit / field separator</td></tr>
+        <tr><td class="glyph-cell">␁</td><td class="byte">0x01</td><td class="abbr">SOH</td><td>Key (<code>␁key␟value</code>) or header row (<code>␁␞</code>)</td></tr>
+        <tr><td class="glyph-cell">␂</td><td class="byte">0x02</td><td class="abbr">STX</td><td>Open text</td></tr>
+        <tr><td class="glyph-cell">␃</td><td class="byte">0x03</td><td class="abbr">ETX</td><td>Close text</td></tr>
+        <tr><td class="glyph-cell">␐</td><td class="byte">0x10</td><td class="abbr">DLE</td><td>Open a nested level; inside text, escape the next code</td></tr>
+        <tr><td class="glyph-cell">␘</td><td class="byte">0x18</td><td class="abbr">CAN</td><td>Close a nested level</td></tr>
         <tr><td class="glyph-cell">␅</td><td class="byte">0x05</td><td class="abbr">ENQ</td><td>Reference (look up named data)</td></tr>
-        <tr><td class="glyph-cell">␐</td><td class="byte">0x10</td><td class="abbr">DLE</td><td>Escape (next byte is literal)</td></tr>
-        <tr><td class="glyph-cell">␚</td><td class="byte">0x1A</td><td class="abbr">SUB</td><td>Substitution (C0DIFF)</td></tr>
+        <tr><td class="glyph-cell">␇</td><td class="byte">0x07</td><td class="abbr">BEL</td><td>Comment, or dead marker before an element</td></tr>
+        <tr><td class="glyph-cell">␖</td><td class="byte">0x16</td><td class="abbr">SYN</td><td>Start of document; heading follows</td></tr>
+        <tr><td class="glyph-cell">␄</td><td class="byte">0x04</td><td class="abbr">EOT</td><td>End of document</td></tr>
+        <tr><td class="glyph-cell">␗</td><td class="byte">0x17</td><td class="abbr">ETB</td><td>Commit marker (stream logs)</td></tr>
+        <tr><td class="glyph-cell">␙</td><td class="byte">0x19</td><td class="abbr">EM</td><td>End of medium; raw blob follows</td></tr>
+        <tr><td class="glyph-cell">␚</td><td class="byte">0x1A</td><td class="abbr">SUB</td><td>Substitution (C0-DIFF)</td></tr>
       </tbody>
     </table>
 
@@ -783,19 +788,17 @@
     <div class="shape-panel active" id="shape-tabular">
 <pre><span class="dim">// Like CSV or SQL tables</span>
 <span class="glyph">␝</span>users
-  <span class="glyph">␁</span>name<span class="glyph">␟</span>amount<span class="glyph">␟</span>type
+  <span class="glyph">␁␞</span>name<span class="glyph">␟</span>amount<span class="glyph">␟</span>type
   <span class="glyph">␞</span>Alice<span class="glyph">␟</span>1502.30<span class="glyph">␟</span>DEPOSIT
   <span class="glyph">␞</span>Bob<span class="glyph">␟</span>340.00<span class="glyph">␟</span>WITHDRAWAL</pre>
     </div>
 
     <div class="shape-panel" id="shape-kv">
-<pre><span class="dim">// Like TOML or INI</span>
+<pre><span class="dim">// Like TOML or INI: a keyed record is a map</span>
 <span class="glyph">␝</span>database
-  <span class="glyph">␞</span>host<span class="glyph">␟</span>localhost
-  <span class="glyph">␞</span>port<span class="glyph">␟</span>5432
+  <span class="glyph">␞␁</span>host<span class="glyph">␟</span>localhost<span class="glyph">␁</span>port<span class="glyph">␟</span>5432
 <span class="glyph">␝</span>server
-  <span class="glyph">␞</span>host<span class="glyph">␟</span>0.0.0.0
-  <span class="glyph">␞</span>port<span class="glyph">␟</span>8080</pre>
+  <span class="glyph">␞␁</span>host<span class="glyph">␟</span>0.0.0.0<span class="glyph">␁</span>port<span class="glyph">␟</span>8080</pre>
     </div>
 
     <div class="shape-panel" id="shape-doc">
@@ -803,17 +806,18 @@
 <span class="glyph">␜</span>My Document
   <span class="glyph">␝</span>Chapter 1
     <span class="glyph">␞</span>First paragraph of text.
-    <span class="glyph">␞</span>A list:
-      <span class="glyph">␟</span>Item one
-      <span class="glyph">␟</span>Item two
+    <span class="glyph">␞</span>A list:<span class="glyph">␟</span><span class="glyph">␐</span>
+      <span class="glyph">␞</span>Item one<span class="glyph">␟</span>Item two
+    <span class="glyph">␘</span>
     <span class="glyph">␝␝</span>Section 1.1
       <span class="glyph">␞</span>Nested content.</pre>
     </div>
 
     <div class="shape-panel" id="shape-diff">
 <pre><span class="dim">// Atomic multi-file edits</span>
+<span class="glyph">␖␁</span>shape<span class="glyph">␟</span>diff
 <span class="glyph">␜</span>foo.txt
-  <span class="glyph">␝</span>Hello <span class="glyph">␟</span>world<span class="glyph">␚</span>universe<span class="glyph">␟</span>!
+  <span class="glyph">␝</span><span class="glyph">␂</span>Hello <span class="glyph">␃</span><span class="glyph">␟</span>world<span class="glyph">␚</span>universe<span class="glyph">␟</span>!
 
 <span class="dim">// Find "Hello world!", replace "world" → "universe"</span></pre>
     </div>
@@ -936,7 +940,7 @@
 
     <p class="bench-footnote">
       Benchmarks on Intel Core Ultra 7 155H, 16 GB RAM, Crystal 1.19.1 compiled with --release.
-      Tokenizer benchmark on 10 MB synthetic document. Conversion benchmarks on 10,000-row table (506 KB C0DATA).
+      Tokenizer benchmark on 10 MB synthetic document. Conversion benchmarks on 10,000-row table (506 KB C0DATA). Measured on the 0.x format; the 1.0 hot loop is unchanged and the numbers will be re-run when the ports land.
     </p>
   </div>
 </section>
@@ -971,17 +975,18 @@
     <div class="install-block">
       <h4>Build data</h4>
 <pre>buf = <span class="kw">C0::Builder</span>.build <span class="kw">do</span> |b|
-  b.group(<span class="str">"users"</span>, headers: [<span class="str">"name"</span>, <span class="str">"amount"</span>]) <span class="kw">do</span>
-    b.record(<span class="str">"Alice"</span>, <span class="str">"1502.30"</span>)
-    b.record(<span class="str">"Bob"</span>, <span class="str">"340.00"</span>)
-  <span class="kw">end</span>
+  b.syn(version: <span class="str">"1"</span>)
+  b.group(<span class="str">"users"</span>, [<span class="str">"name"</span>, <span class="str">"amount"</span>])
+  b.record(<span class="str">"Alice"</span>, <span class="str">"1502.30"</span>)
+  b.record(<span class="str">"Bob"</span>, <span class="str">"340.00"</span>)
+  b.eot
 <span class="kw">end</span></pre>
     </div>
 
     <div class="install-block">
       <h4>Read data</h4>
-<pre>table = <span class="kw">C0::Table</span>.new(buf)
-table.record(<span class="str">0</span>).field(<span class="str">0</span>)  <span class="dim"># => "Alice" (zero-copy slice)</span></pre>
+<pre>doc = <span class="kw">C0::Document</span>.new(buf)
+doc[<span class="str">"users"</span>].record(<span class="str">0</span>).value(<span class="str">0</span>)  <span class="dim"># => "Alice" (zero-copy slice)</span></pre>
     </div>
 
     <div class="install-block">
@@ -1071,7 +1076,7 @@ function showShape(id) {
 
 // Scatter background glyphs
 (function() {
-  const glyphs = ['␜', '␝', '␞', '␟', '␁', '␄', '␂', '␃'];
+  const glyphs = ['␜', '␝', '␞', '␟', '␁', '␄', '␂', '␃', '␐', '␘', '␇', '␖'];
   const scatter = document.getElementById('scatter');
   for (let i = 0; i < 30; i++) {
     const span = document.createElement('span');
