@@ -955,7 +955,7 @@
       <h4>Implementations &amp; API docs</h4>
 <pre><span class="kw">Crystal</span>  reference     <a href="https://github.com/c0data/c0-cr">c0data/c0-cr</a>   <a href="https://c0data.github.io/c0-cr/">API docs</a>
 <span class="kw">TypeScript</span>             <a href="https://github.com/c0data/c0-js">c0data/c0-js</a>   <a href="https://c0data.github.io/c0-js/">API docs</a>
-<span class="kw">Rust</span>     zero-dep      <a href="https://github.com/c0data/c0-rs">c0data/c0-rs</a>   <span class="dim">cargo doc</span>
+<span class="kw">Rust</span>     zero-dep      <a href="https://github.com/c0data/c0-rs">c0data/c0-rs</a>   <a href="https://docs.rs/c0data">docs.rs</a>
 <span class="kw">Go</span>       pure Go       <a href="https://github.com/c0data/c0-go">c0data/c0-go</a>   <a href="https://pkg.go.dev/github.com/c0data/c0-go">pkg.go.dev</a>
 <span class="kw">C</span>        single header <a href="https://github.com/c0data/c0-c">c0data/c0-c</a>    <a href="https://c0data.github.io/c0-c/">API docs</a>
 <span class="kw">Python</span>   C extension   <a href="https://github.com/c0data/c0-py">c0data/c0-py</a>   <a href="https://c0data.github.io/c0-py/">API docs</a>
@@ -965,8 +965,13 @@
     </div>
 
     <div class="install-block">
-      <h4>As a library</h4>
-<pre><span class="dim"># shard.yml</span>
+      <h4>Install</h4>
+<pre><span class="dim"># the package is c0data everywhere; in code it is c0</span>
+<span class="kw">npm</span>    install c0data
+<span class="kw">cargo</span>  add c0data            <span class="dim"># use c0::…</span>
+<span class="kw">gem</span>    install c0data        <span class="dim"># require "c0"</span>
+<span class="kw">go</span>     get github.com/c0data/c0-go
+<span class="dim"># shard.yml</span>
 <span class="kw">dependencies</span>:
   <span class="kw">c0</span>:
     <span class="kw">github</span>: <span class="str">c0data/c0-cr</span></pre>
