@@ -1,6 +1,6 @@
 # The message format that was already in ASCII
 
-*2026-11-08. Thomas Sawyer.*
+*Thomas Sawyer · 8 November 2026*
 
 Open the [1963 ASCII chart](https://en.wikipedia.org/wiki/ASCII) and read the first column. Not the letters.
 The [first thirty-two positions](https://en.wikipedia.org/wiki/C0_and_C1_control_codes), the ones your keyboard still reaches
