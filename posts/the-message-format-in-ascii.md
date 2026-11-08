@@ -160,7 +160,10 @@ same two columns:
 And only the C0DATA form can hold a comma, a quote, a newline or a brace
 in a value without a rule for it. Those glyphs, by the way, are real:
 Unicode put a [picture of every control code](https://en.wikipedia.org/wiki/Control_Pictures) at U+2400, so a document can
-be shown exactly as it is without any of its bytes changing.
+be shown exactly as it is without any of its bytes changing. The tools
+work in that form: c0fmt converts a document between the compact bytes
+and the pictured form, and the VS Code extension highlights the pictures
+and lines up the columns.
 
 Some of the 1967 roles moved, and I should say which and why. SYN starts
 a document rather than SOH, because the one thing a reader must be able

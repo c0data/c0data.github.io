@@ -8,8 +8,8 @@
 <meta property="og:title" content="The message format that was already in ASCII">
 <meta property="og:description" content="Open the 1963 ASCII chart and read the first column. Not the letters. The first thirty-two positions, the ones your keyboard still reaches with the Control key and that no editor will show you.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://c0data.github.io/posts/the-message-format-in-ascii/">
-<link rel="canonical" href="https://c0data.github.io/posts/the-message-format-in-ascii/">
+<meta property="og:url" content="https://openbohemians.org/blog/the-message-format-in-ascii/">
+<link rel="canonical" href="https://openbohemians.org/blog/the-message-format-in-ascii/">
 <style>
   :root {
     --bg: #0d1117; --bg-raised: #161b22; --bg-code: #1c2129; --border: #30363d;
@@ -197,7 +197,10 @@ same two columns:</p>
 <p>And only the C0DATA form can hold a comma, a quote, a newline or a brace
 in a value without a rule for it. Those glyphs, by the way, are real:
 Unicode put a <a href="https://en.wikipedia.org/wiki/Control_Pictures">picture of every control code</a> at U+2400, so a document can
-be shown exactly as it is without any of its bytes changing.</p>
+be shown exactly as it is without any of its bytes changing. The tools
+work in that form: c0fmt converts a document between the compact bytes
+and the pictured form, and the VS Code extension highlights the pictures
+and lines up the columns.</p>
 <p>Some of the 1967 roles moved, and I should say which and why. SYN starts
 a document rather than SOH, because the one thing a reader must be able
 to do from any offset is find a beginning, and the frame used SYN for
