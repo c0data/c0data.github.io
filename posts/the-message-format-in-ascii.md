@@ -1,6 +1,6 @@
 # The message format that was already in ASCII
 
-*Draft, 2026-11-08. Thomas Sawyer.*
+*2026-11-08. Thomas Sawyer.*
 
 Open the 1963 ASCII chart and read the first column. Not the letters.
 The first thirty-two positions, the ones your keyboard still reaches
