@@ -61,8 +61,8 @@
 <article>
 <h1>The message format that was already in ASCII</h1>
 <p class="byline">2026-11-08. Thomas Sawyer.</p>
-<p>Open the 1963 ASCII chart and read the first column. Not the letters.
-The first thirty-two positions, the ones your keyboard still reaches
+<p>Open the <a href="https://en.wikipedia.org/wiki/ASCII">1963 ASCII chart</a> and read the first column. Not the letters.
+The <a href="https://en.wikipedia.org/wiki/C0_and_C1_control_codes">first thirty-two positions</a>, the ones your keyboard still reaches
 with the Control key and that no editor will show you.</p>
 <pre><code>0x01  SOM   Start of Message
 0x02  EOA   End of Address
@@ -91,8 +91,8 @@ to match: FS, GS, RS, US. File, Group, Record, Unit. The first four
 became CAN, EM, SUB, ESC. Cancel, End of Medium, Substitute, Escape.</p>
 <h2>What a message looked like</h2>
 <p>For about fifteen years this was how two computers exchanged a record.
-The procedures were written down in ANSI X3.28, and IBM&rsquo;s Binary
-Synchronous Communications, announced in 1967 with the 2780 terminal,
+The procedures were written down in ANSI X3.28, and IBM&rsquo;s <a href="https://en.wikipedia.org/wiki/Binary_Synchronous_Communications">Binary
+Synchronous Communications</a>, announced in 1967 with the <a href="https://en.wikipedia.org/wiki/IBM_2780/3780">2780 terminal</a>,
 was the version most people met.</p>
 <pre><code>SYN SYN ENQ                           may I send?
 SYN SYN ACK                           go ahead
@@ -125,7 +125,7 @@ cards that was exactly the right amount of standard.</p>
 terminal does something with survived in daily use: BEL, BS, HT, LF, CR,
 FF, ESC, and DC1 and DC3 as flow control. The ones that framed a
 conversation between machines had nothing to do on a screen.</p>
-<p>Framing moved down the stack. HDLC put a flag byte and bit stuffing
+<p>Framing moved down the stack. <a href="https://en.wikipedia.org/wiki/High-Level_Data_Link_Control">HDLC</a> put a flag byte and bit stuffing
 around a frame; later protocols put a length in front of it; TCP made a
 reliable byte stream and the question of where a message began became
 somebody else&rsquo;s. Nobody needed STX to find the start of the text when the
@@ -140,10 +140,10 @@ types them because no editor shows them.</p>
 <p>So they went quiet. Not away: quiet. For sixty years every operating
 system, every language, every network has carried 0x1C through 0x1F
 unharmed, because they are just bytes and nothing claims them. A few
-formats kept using them. Library catalogues in MARC end a record with
+formats kept using them. Library catalogues in <a href="https://www.loc.gov/marc/">MARC</a> end a record with
 0x1D, a field with 0x1E and a subfield with 0x1F, and have since the
-1970s. RFC 7464, from 2015, separates a sequence of JSON texts with RS.
-GNU Info files mark each node with US. That is about it.</p>
+1970s. <a href="https://www.rfc-editor.org/rfc/rfc7464">RFC 7464</a>, from 2015, separates a sequence of JSON texts with RS.
+<a href="https://www.gnu.org/software/texinfo/manual/texinfo/html_node/Info-Format-Specification.html">GNU Info files</a> mark each node with US. That is about it.</p>
 <h2>What was lost</h2>
 <p>A delimiter that cannot be in the data.</p>
 <p>That sentence is the whole argument. Pick any text format and ask what
@@ -158,7 +158,7 @@ bytes below 0x20. They cannot collide, so nothing needs quoting. A
 reader finds a record boundary by scanning for one byte, and that scan
 is the fastest thing a CPU does.</p>
 <h2>Picking it up again</h2>
-<p>C0DATA is that message format, resumed. Sixteen of the thirty-two codes,
+<p><a href="https://c0data.github.io/">C0DATA</a> is that message format, resumed. Sixteen of the thirty-two codes,
 each doing what its name says or the nearest thing the name allows, and
 the other sixteen left alone.</p>
 <pre><code>␖  SYN  starts a document; the heading follows
@@ -187,16 +187,16 @@ heading, the group name, the mark that says the first row is a header,
 and EOT. Per row, C0DATA spends what CSV spends, one byte between fields
 and one between rows. So the gap to CSV is a constant, 23 bytes for this
 table whether it has two rows or ten thousand, while JSON keeps paying
-for its keys and punctuation on every row:</p>
+for its keys and punctuation on every row. On sample tables with the
+same two columns:</p>
 <pre><code>rows      C0DATA      CSV      JSON
-2             75       52        95
 100        1,996    1,973     4,172
 1,000     19,781   19,758    41,757
 10,000   198,018  197,995   417,994
 </code></pre>
 <p>And only the C0DATA form can hold a comma, a quote, a newline or a brace
 in a value without a rule for it. Those glyphs, by the way, are real:
-Unicode put a picture of every control code at U+2400, so a document can
+Unicode put a <a href="https://en.wikipedia.org/wiki/Control_Pictures">picture of every control code</a> at U+2400, so a document can
 be shown exactly as it is without any of its bytes changing.</p>
 <p>Some of the 1967 roles moved, and I should say which and why. SYN starts
 a document rather than SOH, because the one thing a reader must be able
@@ -222,7 +222,7 @@ header row so a table can name its columns once; keyed records whose
 order is data; nesting; references; and a diff format that uses SUB for
 what SUB was named for, the place where a wrong value is replaced by the
 right one. Seven implementations read and write it against one
-conformance suite. The spec is at github.com/c0data.</p>
+conformance suite. The spec is at <a href="https://github.com/c0data">github.com/c0data</a>.</p>
 <h2>The point</h2>
 <p>ASCII&rsquo;s authors designed a message format and a text encoding in the same
 table, and the world kept the half it could see. The other half has been

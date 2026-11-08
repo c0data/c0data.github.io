@@ -2,8 +2,8 @@
 
 *2026-11-08. Thomas Sawyer.*
 
-Open the 1963 ASCII chart and read the first column. Not the letters.
-The first thirty-two positions, the ones your keyboard still reaches
+Open the [1963 ASCII chart](https://en.wikipedia.org/wiki/ASCII) and read the first column. Not the letters.
+The [first thirty-two positions](https://en.wikipedia.org/wiki/C0_and_C1_control_codes), the ones your keyboard still reaches
 with the Control key and that no editor will show you.
 
     0x01  SOM   Start of Message
@@ -36,8 +36,8 @@ became CAN, EM, SUB, ESC. Cancel, End of Medium, Substitute, Escape.
 ## What a message looked like
 
 For about fifteen years this was how two computers exchanged a record.
-The procedures were written down in ANSI X3.28, and IBM's Binary
-Synchronous Communications, announced in 1967 with the 2780 terminal,
+The procedures were written down in ANSI X3.28, and IBM's [Binary
+Synchronous Communications](https://en.wikipedia.org/wiki/Binary_Synchronous_Communications), announced in 1967 with the [2780 terminal](https://en.wikipedia.org/wiki/IBM_2780/3780),
 was the version most people met.
 
     SYN SYN ENQ                           may I send?
@@ -77,7 +77,7 @@ terminal does something with survived in daily use: BEL, BS, HT, LF, CR,
 FF, ESC, and DC1 and DC3 as flow control. The ones that framed a
 conversation between machines had nothing to do on a screen.
 
-Framing moved down the stack. HDLC put a flag byte and bit stuffing
+Framing moved down the stack. [HDLC](https://en.wikipedia.org/wiki/High-Level_Data_Link_Control) put a flag byte and bit stuffing
 around a frame; later protocols put a length in front of it; TCP made a
 reliable byte stream and the question of where a message began became
 somebody else's. Nobody needed STX to find the start of the text when the
@@ -94,10 +94,10 @@ types them because no editor shows them.
 So they went quiet. Not away: quiet. For sixty years every operating
 system, every language, every network has carried 0x1C through 0x1F
 unharmed, because they are just bytes and nothing claims them. A few
-formats kept using them. Library catalogues in MARC end a record with
+formats kept using them. Library catalogues in [MARC](https://www.loc.gov/marc/) end a record with
 0x1D, a field with 0x1E and a subfield with 0x1F, and have since the
-1970s. RFC 7464, from 2015, separates a sequence of JSON texts with RS.
-GNU Info files mark each node with US. That is about it.
+1970s. [RFC 7464](https://www.rfc-editor.org/rfc/rfc7464), from 2015, separates a sequence of JSON texts with RS.
+[GNU Info files](https://www.gnu.org/software/texinfo/manual/texinfo/html_node/Info-Format-Specification.html) mark each node with US. That is about it.
 
 ## What was lost
 
@@ -118,7 +118,7 @@ is the fastest thing a CPU does.
 
 ## Picking it up again
 
-C0DATA is that message format, resumed. Sixteen of the thirty-two codes,
+[C0DATA](https://c0data.github.io/) is that message format, resumed. Sixteen of the thirty-two codes,
 each doing what its name says or the nearest thing the name allows, and
 the other sixteen left alone.
 
@@ -149,17 +149,17 @@ heading, the group name, the mark that says the first row is a header,
 and EOT. Per row, C0DATA spends what CSV spends, one byte between fields
 and one between rows. So the gap to CSV is a constant, 23 bytes for this
 table whether it has two rows or ten thousand, while JSON keeps paying
-for its keys and punctuation on every row:
+for its keys and punctuation on every row. On sample tables with the
+same two columns:
 
     rows      C0DATA      CSV      JSON
-    2             75       52        95
     100        1,996    1,973     4,172
     1,000     19,781   19,758    41,757
     10,000   198,018  197,995   417,994
 
 And only the C0DATA form can hold a comma, a quote, a newline or a brace
 in a value without a rule for it. Those glyphs, by the way, are real:
-Unicode put a picture of every control code at U+2400, so a document can
+Unicode put a [picture of every control code](https://en.wikipedia.org/wiki/Control_Pictures) at U+2400, so a document can
 be shown exactly as it is without any of its bytes changing.
 
 Some of the 1967 roles moved, and I should say which and why. SYN starts
@@ -188,7 +188,7 @@ header row so a table can name its columns once; keyed records whose
 order is data; nesting; references; and a diff format that uses SUB for
 what SUB was named for, the place where a wrong value is replaced by the
 right one. Seven implementations read and write it against one
-conformance suite. The spec is at github.com/c0data.
+conformance suite. The spec is at [github.com/c0data](https://github.com/c0data).
 
 ## The point
 
