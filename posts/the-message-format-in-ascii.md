@@ -93,8 +93,10 @@ types them because no editor shows them.
 
 So they went quiet. Not away: quiet. For sixty years every operating
 system, every language, every network has carried 0x1C through 0x1F
-unharmed, because they are just bytes and nothing claims them. A few
-formats kept using them. Library catalogues in [MARC](https://www.loc.gov/marc/) end a record with
+unharmed, because they are just bytes and nothing claims them, though
+some string routines have started treating some of them as mere line
+breaks, following Unicode's classification of them as paragraph
+separators. A few formats kept using them. Library catalogues in [MARC](https://www.loc.gov/marc/) end a record with
 0x1D, a field with 0x1E and a subfield with 0x1F, and have since the
 1970s. [RFC 7464](https://www.rfc-editor.org/rfc/rfc7464), from 2015, separates a sequence of JSON texts with RS.
 [GNU Info files](https://www.gnu.org/software/texinfo/manual/texinfo/html_node/Info-Format-Specification.html) mark each node with US. That is about it.

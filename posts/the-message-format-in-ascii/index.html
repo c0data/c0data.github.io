@@ -139,8 +139,10 @@ separators never had that problem, because nobody types them, and nobody
 types them because no editor shows them.</p>
 <p>So they went quiet. Not away: quiet. For sixty years every operating
 system, every language, every network has carried 0x1C through 0x1F
-unharmed, because they are just bytes and nothing claims them. A few
-formats kept using them. Library catalogues in <a href="https://www.loc.gov/marc/">MARC</a> end a record with
+unharmed, because they are just bytes and nothing claims them, though
+some string routines have started treating some of them as mere line
+breaks, following Unicode&rsquo;s classification of them as paragraph
+separators. A few formats kept using them. Library catalogues in <a href="https://www.loc.gov/marc/">MARC</a> end a record with
 0x1D, a field with 0x1E and a subfield with 0x1F, and have since the
 1970s. <a href="https://www.rfc-editor.org/rfc/rfc7464">RFC 7464</a>, from 2015, separates a sequence of JSON texts with RS.
 <a href="https://www.gnu.org/software/texinfo/manual/texinfo/html_node/Info-Format-Specification.html">GNU Info files</a> mark each node with US. That is about it.</p>
