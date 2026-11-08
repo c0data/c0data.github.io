@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Build posts/<slug>/index.html from posts/<slug>.md.
+"""Local preview: build posts/<slug>/index.html from posts/<slug>.md.
 
     python3 posts/build.py posts/<slug>.md [CANONICAL-URL]
 
-A post whose home is elsewhere (openbohemians.org) passes that URL so the
-page's canonical link points there.
+Posts are published on openbohemians.org/blog/ from the markdown here;
+posts/<slug>/index.html in the repository is only a redirect there, so do
+not commit a preview build over it. CANONICAL-URL sets the preview's
+canonical link (default: the openbohemians.org URL for the slug).
 
 Needs the `markdown` package. The page shell mirrors the landing page's
 colours; control pictures (U+2400..U+241F) inside code are tinted by a
@@ -25,7 +27,7 @@ if len(lines) > 2 and lines[2].startswith("*"):
 body = markdown.markdown("\n".join(lines[body_start:]), extensions=["smarty"], output_format="html5")
 description = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", body.split("</p>")[0]))[:200]
 slug = src.stem
-canonical = sys.argv[2] if len(sys.argv) > 2 else f"https://c0data.github.io/posts/{slug}/"
+canonical = sys.argv[2] if len(sys.argv) > 2 else f"https://openbohemians.org/blog/{slug}/"
 out = src.parent / slug / "index.html"
 out.parent.mkdir(parents=True, exist_ok=True)
 
