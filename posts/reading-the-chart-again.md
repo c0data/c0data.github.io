@@ -26,7 +26,7 @@ Sixteen codes are used. Here they are, with the old meaning and the new.
     ETB   end of transmission block   commit
     CAN   cancel                      close the level
     EM    end of medium               raw bytes follow, to the end
-    SUB   substitute                  the pair old/new (C0DIFF)
+    SUB   substitute                  subordinate: the next element is under the last
     FS    file separator              file
     GS    group separator             group
     RS    record separator            record
@@ -219,8 +219,11 @@ escapes, no framing, no scanning. A document can carry a blob after
 itself without encoding it.
 
 **SUB**, substitute, was the mark for a character received in error, to be
-replaced. In C0DIFF it sits between an old value and its new one. That
-format is still being settled and gets its own post.
+replaced. Lifted, it reads as *subordinate*: the element after it stands
+under the one before. In front of GS it makes a subsection, `␝Chapter
+1␚␝Section 1.1`; in front of US it hangs a sub-unit off a unit,
+`␞old␚␟new`, which is how C0DIFF writes a replacement, the old sense
+regained one level up. That format is settled and gets its own post.
 
 ## What the lifting bought
 
